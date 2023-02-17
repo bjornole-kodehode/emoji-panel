@@ -69,11 +69,39 @@
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  margin-top:50px
+  margin-top:50px;
+  scrollbar-color: #999 #333;
 }
 
-.emoji:hover {
-  background-color: #1a1a1a;
+
+.emojis::-webkit-scrollbar {
+  width: 10px; /* Mostly for vertical scrollbars */
+  height: 10px; /* Mostly for horizontal scrollbars */
+  
+}
+.emojis::-webkit-scrollbar-thumb { /* Foreground */
+  background: #999;
+  border-radius: 8px;
+}
+.emojis::-webkit-scrollbar-track { /* Background */
+  background: #333;
+  border-radius: 8px;
+}
+
+.emoji-panel-background {
+  background-color: #171717;
+  border-radius: 8px;
+  padding: 10px;
+  border: 2px solid #131313;
+}
+
+.emoji-single:hover {
+  background-color: #3a3939;
   cursor: pointer;
 } 
 
+
+
+.emoji-single-hover:hover {
+  display: block;
+}

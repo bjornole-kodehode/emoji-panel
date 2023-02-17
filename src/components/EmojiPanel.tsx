@@ -9,6 +9,19 @@ interface Emoji {
 const EmojiPanel = () => {
     const [emojis, setEmojis] = useState<Emoji[]>([])
     const [displayEmojisPanel, setDisplayEmojisPanel] = useState(false)
+    const [inputMessage, setInputMessage] = useState("")
+    const [search, setSearch] = useState("")
+ 
+        const [hover, setHover] = useState(false)
+
+        const onHover = () => {
+            setHover(true)
+        }
+        const onLeave = () => {
+            setHover(false)
+        }
+       
+    
     
     const emojiPanelRef = useRef(null)
     useEffect(() => {
@@ -28,17 +41,36 @@ const EmojiPanel = () => {
         return () => document.removeEventListener("click", onClick)
     
     }, [])
+    function filterEmojisBySearch () {
+        if (search === "") {
+            return emojis
+        }
+        return emojis?.filter((emoji) => emoji.unicodeName.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+    }
+   
     const random = Math.floor(Math.random() * 2693)
     const randomEmoji = emojis[random]?.character
     return (
     <div ref={emojiPanelRef} onClick={(e) => e.stopPropagation()}>
         <div className='emoji-panel-container'>
-            <input />
+            <input type="text"   onChange={e => setSearch(e.target.value)}/>
           
             <div className='emoji-panel'>
-                <button onClick={() => setDisplayEmojisPanel(prevState => !prevState)}>{randomEmoji}</button>
-                <div className="emojis">
-                    {displayEmojisPanel && emojis.map(((emoji: any, idx) => <div className='emoji' key={idx}>{emoji?.character}</div>))}
+                <button 
+                onClick={() => setDisplayEmojisPanel(prevState => !prevState)}
+                >
+                    {randomEmoji}
+                </button>
+                <div className={`emojis ${displayEmojisPanel ? "emoji-panel-background" : ""}`}>
+                    {displayEmojisPanel && filterEmojisBySearch().map(((emoji: any, idx) => 
+                            <div 
+                                key={emoji?.unicodeName} 
+                                className='emoji-single'
+                                
+                            >
+                                        {emoji?.character}     
+                            </div>
+                        ))}
                 </div>
             </div>
 
