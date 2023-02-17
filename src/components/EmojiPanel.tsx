@@ -47,8 +47,8 @@ const EmojiPanel = () => {
         <div className='emoji-panel-container'>
             <input type="text"   onChange={e => setSearch(e.target.value)}/>
           
-            <div className='emoji-panel'>
-                <button 
+            <div className={`emoji-panel ${displayEmojisPanel ? "emoji-panel-active" : ""}`}>
+                <button className=''
                 onClick={() => setDisplayEmojisPanel(prevState => !prevState)}
                 >
                     {randomEmoji}
@@ -58,7 +58,6 @@ const EmojiPanel = () => {
                             <div 
                                 key={emoji?.unicodeName} 
                                 className='emoji-single'
-                                
                             >
                                         {emoji?.character}     
                             </div>

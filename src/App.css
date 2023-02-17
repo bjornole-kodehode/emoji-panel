@@ -60,7 +60,21 @@
 .emoji-panel button {
   color: black;
   border-radius: 0;
+  min-width: 84px;
+  user-select: none;
+  -webkit-filter: grayscale(100%);
+   filter: grayscale(100%);
 }
+.emoji-panel-active  button{
+  -webkit-filter: grayscale(0%);
+   filter: grayscale(0%);
+}
+
+.emoji-panel button:hover {
+  -webkit-filter: grayscale(0%);
+   filter: grayscale(0%);
+}
+
 
 .emojis {
   position: absolute;
@@ -101,7 +115,3 @@
 } 
 
 
-
-.emoji-single-hover:hover {
-  display: block;
-}
