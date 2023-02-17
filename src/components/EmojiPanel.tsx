@@ -9,17 +9,9 @@ interface Emoji {
 const EmojiPanel = () => {
     const [emojis, setEmojis] = useState<Emoji[]>([])
     const [displayEmojisPanel, setDisplayEmojisPanel] = useState(false)
-    const [inputMessage, setInputMessage] = useState("")
     const [search, setSearch] = useState("")
  
-        const [hover, setHover] = useState(false)
-
-        const onHover = () => {
-            setHover(true)
-        }
-        const onLeave = () => {
-            setHover(false)
-        }
+     
        
     
     
